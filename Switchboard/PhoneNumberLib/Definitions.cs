@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhoneNumberComparer
+namespace PhoneNumberLib
 {
-    public class Comparer
+    internal static class Consts
     {
+        public const int MAX_VALID_LENGTH =  13;
     }
 }

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComparerTests", "UnitTests\ComparerTests.csproj", "{39DFB6E3-8570-4E4E-8E8D-698A02873E61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchboardsTests", "UnitTests\SwitchboardsTests.csproj", "{39DFB6E3-8570-4E4E-8E8D-698A02873E61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comparer", "Comparer\Comparer.csproj", "{3A14CC6D-0CC7-4DE8-88AE-F95DF5CF068B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLib", "PhoneNumberLib\PhoneNumberLib.csproj", "{3A14CC6D-0CC7-4DE8-88AE-F95DF5CF068B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

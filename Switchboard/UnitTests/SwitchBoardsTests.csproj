@@ -6,8 +6,8 @@
     <ProjectGuid>{39DFB6E3-8570-4E4E-8E8D-698A02873E61}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ComparerTests</RootNamespace>
-    <AssemblyName>ComparerTests</AssemblyName>
+    <RootNamespace>SwitchboardTests</RootNamespace>
+    <AssemblyName>SwitchboardTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -45,18 +45,21 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="PhoneNumberLibUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PhoneNumberLibPerfTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Comparer\Comparer.csproj">
+    <ProjectReference Include="..\PhoneNumberLib\PhoneNumberLib.csproj">
       <Project>{3a14cc6d-0cc7-4de8-88ae-f95df5cf068b}</Project>
-      <Name>Comparer</Name>
+      <Name>PhoneNumberLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
