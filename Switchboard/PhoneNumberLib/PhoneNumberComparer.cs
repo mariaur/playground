@@ -23,8 +23,10 @@ namespace PhoneNumberLib
             if (ReferenceEquals(phoneA, phoneB))
                 return true;
 
-            // Case: One of the numbers is null, while the other is not - they are not equal
+            // Case: One of the numbers is null or empty, while the other is not - they are not equal
             if ((phoneA == null) || (phoneB == null))
+                return false;
+            if ((phoneA == string.Empty) || (phoneB == string.Empty))
                 return false;
 
             // Case: Both numbers are not null & they aren't explicitly equal
@@ -33,7 +35,7 @@ namespace PhoneNumberLib
 
         /// <summary>
         /// Validate that the extracted phone number is legal, currently validates only length
-        /// Throws 'ArgumentOutOfRangeException' on illigal length
+        /// Throws 'ArgumentOutOfRangeException' on illegal length
         /// </summary>
         /// <param name="phoneNumber"> Phone number to validate </param>
         internal static void ValidateNumber(string phoneNumber)
@@ -64,7 +66,8 @@ namespace PhoneNumberLib
 
         public int GetHashCode(string obj)
         {
-            return obj.GetHashCode();
+            var extractedObject = Regex.Replace(obj, _numberMatchingPattern, string.Empty);
+            return extractedObject.GetHashCode();
         }
     }
 
@@ -76,10 +79,10 @@ namespace PhoneNumberLib
     {
         public bool Equals(string x, string y)
         {
-            var extractedA = new String(x.Where(Char.IsDigit).ToArray());
+            var extractedA = new string(x.Where(Char.IsDigit).ToArray());
             PhoneNumberComparer.ValidateNumber(extractedA);
 
-            var extractedB = new String(y.Where(Char.IsDigit).ToArray());
+            var extractedB = new string(y.Where(Char.IsDigit).ToArray());
             PhoneNumberComparer.ValidateNumber(extractedB);
 
             return extractedA == extractedB;
@@ -87,7 +90,8 @@ namespace PhoneNumberLib
 
         public int GetHashCode(string obj)
         {
-            return obj.GetHashCode();
+            var extractedObject = new string(obj.Where(Char.IsDigit).ToArray());
+            return extractedObject.GetHashCode();
         }
     }
 
@@ -107,15 +111,15 @@ namespace PhoneNumberLib
                 if (validatePhoneLength > Consts.MAX_VALID_LENGTH)
                     throw new ArgumentOutOfRangeException($"Phone number length doesn't match the valid length: '{Consts.MAX_VALID_LENGTH}', numbers are: '{y}', '{y}'");
 
-                while (!Char.IsDigit(x[i]) && i < xLen) { i++; }
-                while (!Char.IsDigit(y[j]) && j < yLen) { j++; }
+                while (i < xLen && !Char.IsDigit(x[i])) { i++; }
+                while (j < yLen && !Char.IsDigit(y[j])) { j++; }
 
-                // Both numbers don't include digits - equal empty numbers
-                if ((i == xLen) && (j == yLen))
-                    return true;
+                // One of the strings got to an end while the other still had digit - not equal
+                if ((i == xLen && j < yLen) || (i < xLen && j == yLen))
+                    return false;
 
-                // Digits doesn't match
-                if (x[i] != y[j])
+                // Digits doesn't match, make sure we did not reach the end of the number
+                if ((i < xLen && j < yLen) && x[i] != y[j])
                     return false;
             }
 
@@ -125,7 +129,8 @@ namespace PhoneNumberLib
 
         public int GetHashCode(string obj)
         {
-            return obj.GetHashCode();
+            var extractedObject = new string(obj.Where(Char.IsDigit).ToArray());
+            return extractedObject.GetHashCode();
         }
     }
 }

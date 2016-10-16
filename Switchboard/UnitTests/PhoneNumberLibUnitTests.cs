@@ -11,6 +11,11 @@ namespace PhoneNumberLibTests
     [TestClass]
     public class PhoneNumberComparerUnitTests
     {
+        // Possible comparers
+        LinqCompare _linqComparer;
+        RegexCompare _regexComparer;
+        SerialCompare _serialComparer;
+
         // Deterministic values for unit tests
         static readonly PhoneNumberPairList EqualNumbers = new PhoneNumberPairList
         {
@@ -24,65 +29,70 @@ namespace PhoneNumberLibTests
             Tuple.Create("1-123-456-7890","123-456-7890"),
             Tuple.Create("1234567890", @"sfjdfhjsk\2353kf7890")
         };
+        [TestInitialize]
+        public void Init()
+        {
+            _linqComparer = new LinqCompare();
+            _regexComparer = new RegexCompare();
+            _serialComparer = new SerialCompare();
+        }
 
         [TestMethod]
-        public void LinqEqualNumbersTest()
+        public void EqualNumbersTest()
         {
-            var linqComparer = new LinqCompare();
             foreach (var pair in EqualNumbers)
             {
-                Assert.IsTrue(PhoneNumberComparer.AreEqual(pair.Item1, pair.Item2, linqComparer));
+                Assert.IsTrue(PhoneNumberComparer.AreEqual(pair.Item1, pair.Item2, _linqComparer));
+                Assert.IsTrue(PhoneNumberComparer.AreEqual(pair.Item1, pair.Item2, _regexComparer));
+                Assert.IsTrue(PhoneNumberComparer.AreEqual(pair.Item1, pair.Item2, _serialComparer));
             }
         }
 
         [TestMethod]
-        public void RegexEqualNumbersTest()
+        public void DifferentNumbersTest()
         {
-            var regexComparer = new RegexCompare();
-            foreach (var pair in EqualNumbers)
-            {
-                Assert.IsTrue(PhoneNumberComparer.AreEqual(pair.Item1, pair.Item2, regexComparer));
-            }
-        }
-
-        [TestMethod]
-        public void SerialEqualNumbersTest()
-        {
-            var serialComparer = new SerialCompare();
-            foreach (var pair in EqualNumbers)
-            {
-                Assert.IsTrue(PhoneNumberComparer.AreEqual(pair.Item1, pair.Item2, serialComparer));
-            }
-        }
-
-        [TestMethod]
-        public void SerialDifferentNumbersTest()
-        {
-            var serialComparer = new SerialCompare();
             foreach (var pair in DifferentNumbers)
             {
-                Assert.IsFalse(PhoneNumberComparer.AreEqual(pair.Item1, pair.Item2, serialComparer));
+                Assert.IsFalse(PhoneNumberComparer.AreEqual(pair.Item1, pair.Item2, _serialComparer));
+                Assert.IsFalse(PhoneNumberComparer.AreEqual(pair.Item1, pair.Item2, _regexComparer));
+                Assert.IsFalse(PhoneNumberComparer.AreEqual(pair.Item1, pair.Item2, _linqComparer));
             }
         }
 
         [TestMethod]
-        public void RegexDifferentNumbersTest()
+        public void BothEmptyNumbersTest()
         {
-            var regexComparer = new RegexCompare();
-            foreach (var pair in DifferentNumbers)
-            {
-                Assert.IsFalse(PhoneNumberComparer.AreEqual(pair.Item1, pair.Item2, regexComparer));
-            }
+            Assert.IsTrue(PhoneNumberComparer.AreEqual(string.Empty, string.Empty, _serialComparer));
+            Assert.IsTrue(PhoneNumberComparer.AreEqual(string.Empty, string.Empty, _regexComparer));
+            Assert.IsTrue(PhoneNumberComparer.AreEqual(string.Empty, string.Empty, _linqComparer));
         }
 
         [TestMethod]
-        public void LinqDifferentNumbersTest()
+        public void BothWhiteSpacesNumbersTest()
         {
-            var linqComparer = new LinqCompare();
-            foreach (var pair in DifferentNumbers)
-            {
-                Assert.IsFalse(PhoneNumberComparer.AreEqual(pair.Item1, pair.Item2, linqComparer));
-            }
+            Assert.IsTrue(PhoneNumberComparer.AreEqual("           ", " ", _serialComparer));
+            Assert.IsTrue(PhoneNumberComparer.AreEqual("  ", "                  ", _regexComparer));
+            Assert.IsTrue(PhoneNumberComparer.AreEqual(" ", "  ", _linqComparer));
         }
+
+
+        [TestMethod]
+        public void OneEmptyNumberTest()
+        {
+            var phoneNumber = "SDFD df12345678{";
+            Assert.IsFalse(PhoneNumberComparer.AreEqual(string.Empty, phoneNumber, _serialComparer));
+            Assert.IsFalse(PhoneNumberComparer.AreEqual(phoneNumber, string.Empty, _regexComparer));
+            Assert.IsFalse(PhoneNumberComparer.AreEqual(string.Empty, phoneNumber, _linqComparer));
+        }
+
+        [TestMethod]
+        public void OneWhiteSpaceOnlyNumberTest()
+        {
+            var phoneNumber = "SDFD df12345678{";
+            Assert.IsFalse(PhoneNumberComparer.AreEqual("    ", phoneNumber, _serialComparer));
+            Assert.IsFalse(PhoneNumberComparer.AreEqual("     ", string.Empty, _regexComparer));
+            Assert.IsFalse(PhoneNumberComparer.AreEqual(phoneNumber, "  ", _linqComparer));
+        }
+
     }
 }

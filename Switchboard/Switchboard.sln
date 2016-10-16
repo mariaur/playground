@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchboardsTests", "UnitTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLib", "PhoneNumberLib\PhoneNumberLib.csproj", "{3A14CC6D-0CC7-4DE8-88AE-F95DF5CF068B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchboardConsole", "Console\SwitchboardConsole.csproj", "{B45F54C9-CE7A-4EBE-9B71-F59B0113C53E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3A14CC6D-0CC7-4DE8-88AE-F95DF5CF068B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A14CC6D-0CC7-4DE8-88AE-F95DF5CF068B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A14CC6D-0CC7-4DE8-88AE-F95DF5CF068B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B45F54C9-CE7A-4EBE-9B71-F59B0113C53E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B45F54C9-CE7A-4EBE-9B71-F59B0113C53E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B45F54C9-CE7A-4EBE-9B71-F59B0113C53E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B45F54C9-CE7A-4EBE-9B71-F59B0113C53E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
