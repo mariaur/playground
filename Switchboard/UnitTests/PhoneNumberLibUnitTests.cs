@@ -94,5 +94,15 @@ namespace PhoneNumberLibTests
             Assert.IsFalse(PhoneNumberComparer.AreEqual(phoneNumber, "  ", _linqComparer));
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ValidateIllegalNumbersTest()
+        {
+            // Exception of Argument out of Range will be thrown only in case both are at least Cosnts.Max_VALID_LENGTH
+            // Otherwise we know the numbers are different (number of digits is different)
+            var phoneNumber = "SDFD df1234567888888888888888888888888888888888888888{";
+            var phoneNumber2 = "332434444444444444444";
+            PhoneNumberComparer.AreEqual(phoneNumber, phoneNumber2, _regexComparer);
+        }
     }
 }

@@ -45,8 +45,17 @@ namespace SwitchboardConsole
                 Stopwatch watch = new Stopwatch();
                 watch.Start();
 
-                var resultString = PhoneNumberComparer.AreEqual(phoneA, phoneB, comparer) ? "equal" : "not equal";
-                Console.WriteLine($"Numbers are {resultString}, operation took: '{watch.Elapsed}'");
+                try
+
+                {
+                    var resultString = PhoneNumberComparer.AreEqual(phoneA, phoneB, comparer) ? "equal" : "not equal";
+                    Console.WriteLine($"Numbers are {resultString}, operation took: '{watch.Elapsed}'");
+                }
+                // Handle ArgumentOutOfRange exception, all other will crash the application currently by design 
+                catch (ArgumentOutOfRangeException)
+                {
+                    Console.WriteLine($"Invalid numbers where entered, please enter numbers with less than '{Consts.MAX_VALID_LENGTH}' digits");
+                }
             }
             while (true);
         }

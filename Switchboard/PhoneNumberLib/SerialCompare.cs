@@ -15,9 +15,9 @@ namespace PhoneNumberLib
             int xLen = x.Length;
             int yLen = y.Length;
 
-            for (int i = 0, j = 0, validatePhoneLength = 0; i < xLen && j < yLen; i++, j++, validatePhoneLength++)
+            for (int i = 0, j = 0; i < xLen && j < yLen; i++, j++)
             {
-                if (validatePhoneLength > Consts.MAX_VALID_LENGTH)
+                if (i > Consts.MAX_VALID_LENGTH || j > Consts.MAX_VALID_LENGTH)
                     throw new ArgumentOutOfRangeException($"Phone number length doesn't match the valid length: '{Consts.MAX_VALID_LENGTH}', numbers are: '{y}', '{y}'");
 
                 while (i < xLen && !Char.IsDigit(x[i])) { i++; }
@@ -31,7 +31,7 @@ namespace PhoneNumberLib
                 if ((i < xLen && j < yLen) && x[i] != y[j])
                     return false;
             }
-
+            
             // Phone numbers have valid length with matching digits
             return true;
         }
