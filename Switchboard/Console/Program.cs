@@ -22,6 +22,7 @@ namespace SwitchboardConsole
                 var phoneB = Console.ReadLine();
 
                 Console.WriteLine("Choose comparison method: l - using Linq, r - using Regex, s - using Serial string comparison");
+                Console.WriteLine("In case other char than('l', 'r', 's') is entered comparison method will be default (Linq)");
                 var compareMethod = Console.ReadLine();
 
                 IEqualityComparer<string> comparer;

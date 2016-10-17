@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RegexCompare.cs" />
+    <Compile Include="SerialCompare.cs" />
+    <Compile Include="LinqCompare.cs" />
     <Compile Include="PhoneNumberComparer.cs" />
     <Compile Include="Definitions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
