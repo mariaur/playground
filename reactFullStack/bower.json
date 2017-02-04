@@ -1,0 +1,20 @@
+{
+  "name": "reactFullStack",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Maria Uretskiy <mariaur@microsoft.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^15.4.2"
+  }
+}
