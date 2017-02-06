@@ -2,12 +2,14 @@ var React = require('react');
 
 module.exports = React.createClass({
     render() {
+        var textStyle = {
+            color: 'ffffff'
+        };
+
         return (
-            <div>
-                  <h4 className='text'>
-                   {this.props.input}
-                </h4>
-            </div>
+            <h4 style={textStyle}>
+                {this.props.input}
+            </h4>
         )
     }
 });

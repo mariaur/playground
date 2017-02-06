@@ -7,7 +7,7 @@ var _input;
 
 function render() {
     ReactDOM.render(
-        <Parent  _text= {_input}/>,
+        <Parent  text= {_input}/>,
         document.getElementById('app')
     );
 }
