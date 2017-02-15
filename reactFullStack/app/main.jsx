@@ -8,7 +8,7 @@ var initial = GroceryItemStore.getItems();
 function render() {
     ReactDOM.render(
         <GroceryItemList items={initial} />,
-        document.getElementById('app2')
+        document.getElementById('app')
     );
 }
 

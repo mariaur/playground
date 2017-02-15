@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.16.1",
     "bower": "^1.8.0",
     "browser-sync": "^2.18.7",
     "browserify": "^14.0.0",
@@ -16,6 +17,7 @@
     "express": "^4.14.1",
     "guid": "0.0.12",
     "gulp-live-server": "0.0.30",
+    "jquery": "^3.1.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "reactify": "^1.1.1",

@@ -32,7 +32,7 @@ gulp.task('bundle',['copy'], function (){
 // ['live-server'] - indicate that our task is dependant on this task
 gulp.task('serve', ['bundle','live-server'], function (){
     browserSync.init(null, {
-        proxy: "http://localhost:7777",
+        proxy: "http://localhost:5858",
         port: 9001
     });
 });
